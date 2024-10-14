@@ -1,0 +1,73 @@
+Assignment_4
+
+Retrieving Information from Tables.
+1) Write a select command that produces the order number, amount, and date for all 
+rows in the Orders table.
+SOLUTION:- Select Onum,Amt,Odate from ORDERS;
++------+---------+------------+
+| Onum | Amt     | Odate      |
++------+---------+------------+
+| 3001 |   18.69 | 1900-10-03 |
+| 3003 |  767.19 | 1900-10-03 |
+| 3002 | 1900.10 | 1900-10-03 |
+| 3005 | 5160.45 | 1900-10-03 |
+| 3006 | 1098.16 | 1900-10-03 |
+| 3009 | 1713.23 | 1900-10-04 |
+| 3007 |   75.75 | 1900-10-04 |
+| 3008 | 4723.00 | 1900-10-05 |
+| 3010 | 1309.95 | 1900-10-06 |
+| 3011 | 9891.88 | 1900-10-06 |
++------+---------+------------+
+
+2) Write a query that produces all rows from the Customers table for which the 
+salesperson’s number is 1001.
+SOLUTION:- mysql> SELECT * FROM CUSTOMERS
+    -> WHERE Snum=1001;
++------+---------+--------+--------+------+
+| Cnum | Cname   | City   | Rating | Snum |
++------+---------+--------+--------+------+
+| 2001 | Hoffman | London |    100 | 1001 |
+| 2006 | Clemens | London |    100 | 1001 |
++------+---------+--------+--------+------+ 
+
+3) Write a query that displays the Salespeople table with the columns in the 
+following order: city, sname, snum, comm.
+SOLUTION:-  SELECT City,Sname,Snum,Comm FROM SALESPEOPLE;
++-----------+---------+------+------+
+| City      | Sname   | Snum | Comm |
++-----------+---------+------+------+
+| London    | Peel    | 1001 | 0.12 |
+| San Jose  | Serres  | 1002 | 0.13 |
+| London    | Motika  | 1004 | 0.11 |
+| Barcelona | Rifkin  | 1007 | 0.15 |
+| New York  | Axelrod | 1003 | 0.10 |
++-----------+---------+------+------+
+
+4) Write a select command that produces the rating followed by the name of each 
+customer in San Jose.
+SOLUTION:-  select rating,cname from customers
+    -> where city='san jose';
++--------+----------+
+| rating | cname    |
++--------+----------+
+|    200 | Liu      |
+|    300 | Cisneros |
++--------+----------+
+
+5) Write a query that will produce the snum values of all salespeople (suppress the 
+duplicates) with orders in the Orders table
+SOLUTION:-  select distinct snum,onum from Orders;
++------+------+
+| snum | onum |
++------+------+
+| 1007 | 3001 |
+| 1001 | 3003 |
+| 1004 | 3002 |
+| 1002 | 3005 |
+| 1007 | 3006 |
+| 1003 | 3009 |
+| 1002 | 3007 |
+| 1001 | 3008 |
+| 1002 | 3010 |
+| 1001 | 3011 |
++------+------+

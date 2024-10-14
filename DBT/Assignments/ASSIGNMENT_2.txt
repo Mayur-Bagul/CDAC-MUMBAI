@@ -1,0 +1,19 @@
+ASSIGNMENT_2
+
+
+Introducing Relational Databases.
+1) Which field of the Customers table is the primary key?
+SOLUTION :- As Cnum indicates Customer Number which is unique for each and every customer 
+	    So Cnum is primary key.
+ 
+2) What is the 4th column of the Customers table?
+SOLUTION :- 4th column in Customers is Rating.
+
+3) What is another word for row? For column?
+SOLUTION :- Rows:-Tuples
+	    Columns:-Attributes
+
+4) Why isn’t it possible to see the first five rows of a table?
+SOLUTION :- We can not see first few rows of RDBMS table because inserted data in not in sequential 
+	    manner to keep insertion operation simultaneous for multiple users, inserted row is 
+	    inserted between any free space of row.
