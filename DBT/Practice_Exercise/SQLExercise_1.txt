@@ -1,0 +1,268 @@
+SQLExercise_1 
+ 
+1. Create the table SEMP with the following structure:- 
+ 
+ EMPNO CHAR(4) 
+ EMPNAME CHAR(20) 
+ BASIC FLOAT 
+ DEPTNO CHAR(2) 
+ DEPTHEAD CHAR(4) 
+Solution:- CREATE TABLE SEMP (
+    -> EMPNO CHAR(4),
+    -> EMPNAME CHAR(20),
+    -> BASIC FLOAT,
+    -> DEPTNO CHAR(2),
+    -> DEPTHEAD CHAR(4));
+ 
+2. Create the table SDEPT with the following structure:- 
+ 
+ DEPTNO CHAR(2) 
+ DEPTNAME CHAR(15) 
+Solution:- 
+mysql> CREATE TABLE SDEPT (
+    -> DEPTNO CHAR(2),
+    -> DEPTNAME CHAR(15));
+ 
+3. Insert into the SDEPT table the following values:- 
+ 
+10, Development 
+20, Training 
+Solution:- INSERT INTO SDEPT (DEPTNO,DEPTNAME)
+    -> VALUES (10, "Development"),
+    -> (20, "Training");
+
+mysql> SELECT * FROM SDEPT;
++--------+-------------+
+| DEPTNO | DEPTNAME    |
++--------+-------------+
+| 10     | Development |
+| 20     | Training    |
++--------+-------------+
+ 
+4. Insert into the SEMP table the following values:- 
+ 
+0001, SUNIL, 6000, 10 
+0002, HIREN, 8000, 20 
+0003, ALI, 4000, 10, 0001 
+0004, GEORGE, 6000, 0002  
+Solution:- INSERT INTO SEMP (EMPNO, EMPNAME, BASIC, DEPTNO)
+    -> VALUES (0001, "SUNIL", 6000, 10),
+    -> (0002, "HIREN", 8000, 20);
+
+mysql> INSERT INTO SEMP (EMPNO, EMPNAME, BASIC, DEPTNO, DEPTHEAD)
+    -> VALUES (0003, "ALI", 4000, 10, 0001);
+
+mysql> INSERT INTO SEMP (EMPNO, EMPNAME, BASIC, DEPTHEAD)
+    -> VALUES (0004, "GEORGE", 6000, 0002);
+
+mysql> SELECT * FROM SEMP;
++-------+---------+-------+--------+----------+
+| EMPNO | EMPNAME | BASIC | DEPTNO | DEPTHEAD |
++-------+---------+-------+--------+----------+
+| 1     | SUNIL   |  6000 | 10     | NULL     |
+| 2     | HIREN   |  8000 | 20     | NULL     |
+| 3     | ALI     |  4000 | 10     | 1        |
+| 4     | GEORGE  |  6000 | NULL   | 2        |
++-------+---------+-------+--------+----------+
+ 
+Create S, P, J, SPJ tables as specified below and insert a few rows in each table:- 
+ 
+ SUPPLIER 
+(S#, Sname, Status, City) 
+- S 
+ PARTS 
+(P#, Pname, Color, Weight, City) 
+- P 
+ PROJECTS 
+(J#, Jname, City) 
+- J 
+ SUPPLIER-PARTS-PROJECT 
+(S#, P#, J#, Qty) 
+ 
+- SPJ 
+Sample data for S# column:- ‘S1’, ‘S2’, ‘S3’, etc. 
+Sample data for P# column:- ‘P1’, ‘P2’, ‘P3’, etc. 
+Sample data for J# column:- ‘J1’, ‘J2’, ‘J3’, etc. 
+Sample data for Status column:- 10, 20, 30, etc. 
+Solution:- CREATE TABLE SUPPLIER (
+    -> `S#` CHAR(4),
+    -> Sname VARCHAR(15),
+    -> Status VARCHAR(25),
+    -> City CHAR(15));
+mysql> CREATE TABLE PARTS (
+    -> `P#` CHAR(4),
+    -> Pname VARCHAR(20),
+    -> Color VARCHAR(15),
+    -> Weight FLOAT(5,2),
+    -> City CHAR(15));
+mysql> CREATE TABLE PROJECTS (
+    -> `J#` CHAR(4),
+    -> Jname VARCHAR(20),
+    -> City CHAR(20));
+mysql> CREATE TABLE SPJ (
+    -> `S#` CHAR(4),
+    -> `P#` CHAR(4),
+    -> `J#` CHAR(4),
+    -> Qty INT);
+mysql> INSERT INTO SUPPLIER (`S#`, Sname, Status, City)
+    -> VALUES ('S1','ORIVA','4 Star','Pune'),
+    -> ('S2','CROMPTON','4 Star','Pune'),
+    -> ('S3','USHA','3 Star','Mumbai');
+mysql> SELECT * FROM SUPPLIER;
++------+----------+--------+-------+
+| S#   | Sname    | Status | City  |
++------+----------+--------+-------+
+| S1   | ORIVA    | 4 Star | Pune  |
+| S2   | CROMPTON | 4 Star | Pune  |
+| S3   | USHA     | 3 Star | Mumbai|
++------+----------+--------+-------+
+
+mysql> INSERT INTO PARTS (`P#`, Pname, Color, Weight, City)
+    -> VALUES ('P1','Fan','White', 10.2, 'Pune'),
+    -> ('P2','Light','Red', 25.3, 'Pune'),
+    -> ('P3','Filter','Chrome', 45.0, 'Mumbai');
+mysql> SELECT * FROM PARTS;
++------+--------+--------+--------+--------+
+| P#   | Pname  | Color  | Weight | City   |
++------+--------+--------+--------+--------+
+| P1   | Fan    | White  |  10.20 | Pune   |
+| P2   | Light  | Red    |  25.30 | Pune   |
+| P3   | Filter | Chrome |  45.00 | Mumbai |
++------+--------+--------+--------+--------+
+
+mysql> INSERT INTO PROJECTS (`J#`, Jname, City)
+    -> VALUES ('J1','TCS','Mumbai'),
+    -> ('J2','Cognizant','Pune'),
+    -> ('J3','Accenture','Bengaluru');
+mysql> SELECT * FROM PROJECTS;
++------+-----------+-----------+
+| J#   | Jname     | City      |
++------+-----------+-----------+
+| J1   | TCS       | Mumbai    |
+| J2   | Cognizant | Pune      |
+| J3   | Accenture | Bengaluru |
++------+-----------+-----------+
+INSERT INTO SPJ (`S#`, `P#`, `J#`, Qty)
+    -> VALUES ('S1','P1','J1',3),
+    -> ('S2','P2','J2',6),
+    -> ('S3','P3','J3',4);
+mysql> SELECT * FROM SPJ;
++------+------+------+------+
+| S#   | P#   | J#   | Qty  |
++------+------+------+------+
+| S1   | P1   | J1   |    3 |
+| S2   | P2   | J2   |    6 |
+| S3   | P3   | J3   |    4 |
++------+------+------+------+
+
+ 
+Write the SELECT queries to do the following:- 
+ 
+5. Display all the data from the S table. 
+Solution:- mysql> SELECT * FROM SUPPLIER;
++------+----------+--------+-------+
+| S#   | Sname    | Status | City  |
++------+----------+--------+-------+
+| S1   | ORIVA    | 4 Star | Pune  |
+| S2   | CROMPTON | 4 Star | Pune  |
+| S3   | USHA     | 3 Star | Mumbai|
++------+----------+--------+-------+
+
+6. Display only the S# and SNAME fields from the S table. 
+Solution:- SELECT `S#`, Sname from SUPPLIER;
++------+----------+
+| S#   | Sname    |
++------+----------+
+| S1   | ORIVA    |
+| S2   | CROMPTON |
+| S3   | USHA     |
++------+----------+
+ 
+7. Display the PNAME and COLOR from the P table for the CITY=”London”. 
+Solution:- SELECT Pname, Color from PARTS
+where City= 'London';
++-------+-------+
+| Pname | Color |
++-------+-------+
+| Fan   | White |
+| Light | Red   |
++-------+-------+ 
+8. Display all the Suppliers from London. 
+Solution:-  SELECT * FROM SUPPLIER
+    -> where City ="London";
++------+----------+--------+------+
+| S#   | Sname    | Status | City |
++------+----------+--------+------+
+| S1   | ORIVA    | 4 Star |London|
++------+----------+--------+------+
+ 
+9. Display all the Suppliers from Paris or Athens. 
+Solution:- 
+mysql> SELECT * FROM SUPPLIER
+    -> where City='athens' or city='paris';
++------+----------+--------+------+
+| S#   | Sname    | Status | City |
++------+----------+--------+------+
+| S2   | CROMPTON | 40     | Paris|
+| S3   | USHA     | 50     |Athens|
++------+----------+--------+------+
+ 
+10. Display all the Projects in Athens. 
+Solution:- mysql> SELECT * FROM PROJECTS
+    -> where City='Athens';
++------+-----------+-----------+
+| J#   | Jname     | City      |
++------+-----------+-----------+
+| J3   | Accenture |  Athens   |
++------+-----------+-----------+
+11. Display all the Partnames with the weight between 12 and 14 (inclusive of both).
+Solution:- mysql> SELECT * FROM PARTS
+    -> where Weight=12 or Weight=14;
++------+--------+--------+--------+--------+
+| P#   | Pname  | Color  | weight | City   |
++------+--------+--------+--------+--------+
+| P2   | Light  | Red    |  12.00 | Paris  |
+| P3   | Filter | Chrome |  14.00 | Athens |
++------+--------+--------+--------+--------+ 
+ 
+12. Display all the Suppliers with a Status greater than or equal to 20. 
+Solution:- mysql> SELECT * FROM SUPPLIER
+    -> where Status >=20;
++------+----------+--------+--------+
+| S#   | Sname    | Status | City   |
++------+----------+--------+--------+
+| S2   | CROMPTON | 20     | Paris  |
+| S3   | USHA     | 30     | Athens |
++------+----------+--------+--------+
+ 
+13. Display all the Suppliers except the Suppliers from London. 
+Solution:- mysql> SELECT * FROM SUPPLIER
+    -> where City<>'London';
++------+----------+--------+--------+
+| S#   | Sname    | Status | City   |
++------+----------+--------+--------+
+| S2   | CROMPTON | 20     | Paris  |
+| S3   | USHA     | 30     | Athens |
++------+----------+--------+--------+
+ 
+14. Display only the Cities from where the Suppliers come from. 
+Solution:- mysql> SELECT City FROM SUPPLIER;
++--------+
+| City   |
++--------+
+| London |
+| Paris  |
+| Athens |
++--------+
+ 
+15. Assuming that the Part Weight is in GRAMS, display the same in 
+MILLIGRAMS and KILOGRAMS.
+Solution:- mysql> SELECT Weight*1000 as "MILLIGRAMS" , Weight/1000 as "KILOGRAMS" FROM PARTS;
+ 
++------------+------------+
+| MILLIGRAMS | KILOGRAMS |
++------------+------------+
+|   10000.00 |   0.010000 |
+|   12000.00 |   0.012000 |
+|   14000.00 |   0.014000 |
++------------+------------+
