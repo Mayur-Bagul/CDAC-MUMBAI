@@ -1,0 +1,73 @@
+Assignment_7
+
+Summarizing Data with Aggregate Functions.
+
+1) Write a query that counts all orders for October 3.
+Solution:- SELECT count(*) "3 Oct " FROM ORDERS
+    -> where Odate ='1900-10-03';
++--------+
+| 3 Oct  |
++--------+
+|      5 |
++--------+
+2) Write a query that counts the number of different non-NULL city values in the 
+Customers table.
+Solution:- 
+mysql> SELECT count(City) FROM CUSTOMERS;
++-------------+
+| count(City) |
++-------------+
+|           7 |
++-------------+
+3) Write a query that selects each customer’s smallest order.
+Solution:- mysql> SELECT Cname, min(Amt) FROM ORDERS, CUSTOMERS
+    -> where ORDERS.Cnum =CUSTOMERS.Cnum
+    -> group by Cname
+    -> order by 2;
++----------+----------+
+| Cname    | min(Amt) |
++----------+----------+
+| Pereira  |    18.69 |
+| Cisneros |    18.69 |
+| Grass    |    75.75 |
+| Hoffman  |   767.19 |
+| Giovanni |  1713.23 |
+| Clemens  |  4723.00 |
+| Liu      |  5160.45 |
++----------+----------+
+4) Write a query that selects the first customer, in alphabetical order, whose name 
+begins with G.
+Solution:- mysql> SELECT Cname FROM CUSTOMERS
+    -> where Cname like 'G%'
+    -> order by 1;
++----------+
+| Cname    |
++----------+
+| Giovanni |
+| Grass    |
++----------+
+5) Write a query that selects the highest rating in each city.
+Solution:- mysql> SELECT City, max(Rating) FROM CUSTOMERS
+    -> group by City;
++----------+-------------+
+| City     | max(Rating) |
++----------+-------------+
+| London   |         100 |
+| Rome     |         200 |
+| San Jose |         300 |
+| Berlin   |         300 |
++----------+-------------+
+6) Write a query that counts the number of salespeople registering orders for each 
+day. (If a salesperson has more than one order on a given day, he or she should be 
+counted only once.)
+Solution:- mysql> SELECT count(distinct Snum) as "Unique Customers", Odate FROM ORDERS
+    -> group by Odate
+    -> order by Odate;
++------------------+------------+
+| Unique Customers | Odate      |
++------------------+------------+
+|                4 | 1900-10-03 |
+|                2 | 1900-10-04 |
+|                1 | 1900-10-05 |
+|                2 | 1900-10-06 |
++------------------+------------+
