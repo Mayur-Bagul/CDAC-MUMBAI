@@ -17,7 +17,7 @@ Solution:- mysql>  SELECT A.SNAME AS person1, B.SNAME AS person2, A.CITY
 
 2) Write a query that produces the names and cities of all customers with the same 
 rating as Hoffman
-Solution:-  for the right syntax to use near 'SELECT RATING FROM CUSTOMERS WHERE CNAME = 'Hoffman'' at line 2
+Solution:-
 mysql>  SELECT CNAME, CITY FROM CUSTOMERS
     ->     WHERE RATING = (SELECT RATING FROM CUSTOMERS WHERE CNAME = 'Hoffman');
 +---------+--------+
