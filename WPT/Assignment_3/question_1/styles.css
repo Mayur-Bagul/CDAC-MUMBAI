@@ -1,0 +1,12 @@
+body {
+    background-color: #282c34; /* Default background color */
+    background-image: url('e:\WPT\Assignment_3\sporty-excitement-green-grass-court-outdoors-generative-ai.jpg'); /* Default background image */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: rgb(198, 166, 26);
+    text-align: center;
+}
+
+p {
+    transition: color 0.5s, font-size 0.5s, font-weight 0.5s;
+}
