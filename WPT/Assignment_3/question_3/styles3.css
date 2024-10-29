@@ -1,0 +1,32 @@
+body {
+    background-image: url('sporty-excitement-green-grass-court-outdoors-generative-ai.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+select {
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #4A90E2;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #357ABD;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+}
